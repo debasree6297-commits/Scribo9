@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="monetag" content="50ee7051d41366cff0970b6500c4a69b">
+    <title>Scribo AI | Write. Create. Scale.</title>
+    <meta name="description" content="Scribo AI 
+      is a free AI tool for content creators. 
+      Generate stories, scripts and image prompts.">
+    <meta name="keywords" content="AI story 
+      generator, AI script writer, free AI tool, 
+      image prompt generator, AI for YouTubers,
+      content creator AI tool">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" 
+      content="Scribo AI | Write. Create. Scale.">
+    <meta property="og:description" 
+      content="Free AI creative tool for 
+      content creators.">
+    <meta property="og:image" content="/logo.png">
+    <link rel="icon" href="/logo.png">
+    <meta name="theme-color" content="#FF8C32">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      // Fix for OAuth redirect on deployed apps
+      if (window.location.hash && window.location.hash.includes('access_token')) {
+        // OAuth redirect — clear hash after Firebase processes it
+        history.replaceState(null, null, window.location.pathname);
+      }
+    </script>
+    <link rel="preload" as="image" href="/assets/main-logo.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

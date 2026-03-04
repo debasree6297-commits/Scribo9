@@ -1,0 +1,7 @@
+{
+  "name": "Remix: Scribo AI",
+  "description": "Next-gen creator-focused AI platform for prompt engineering and script writing.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

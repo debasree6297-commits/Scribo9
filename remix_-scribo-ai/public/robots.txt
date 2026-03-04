@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://scriboai.vercel.app/sitemap.xml

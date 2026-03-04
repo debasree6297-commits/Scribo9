@@ -1,0 +1,469 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FFBFA6;
+  --color-accent: #FF9A6C;
+  --color-saffron: #FFC87A;
+  --color-green: #A8D5BA;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #FFF8F4;
+  --color-bg-dark: #1A0F0A;
+  --color-text-dark: #1A1A2E;
+  --color-text-mid: #4A4A6A;
+  --color-text-light: #9999BB;
+  
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+}
+
+:root {
+  --primary: #FFBFA6;
+  --accent: #FF9A6C;
+  --saffron: #FFC87A;
+  --green: #A8D5BA;
+  --bg: #FFFFFF;
+  --bg-alt: #FFF8F4;
+  --bg-dark: #1A0F0A;
+  --glass: rgba(255,191,166,0.12);
+  --glass-border: rgba(255,154,108,0.2);
+  --text-dark: #1A1A2E;
+  --text-mid: #4A4A6A;
+  --text-light: #9999BB;
+  --glow: rgba(255,154,108,0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Nothing should overflow screen */
+div, section, header, footer, nav {
+  max-width: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  
+  background-color: #FFFFFF;
+  
+  background-image: 
+    linear-gradient(
+      rgba(30, 20, 15, 0.07) 1px, 
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg, 
+      rgba(30, 20, 15, 0.07) 1px, 
+      transparent 1px
+    );
+  background-size: 48px 48px;
+  
+  mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    rgba(0,0,0,0.6) 0%,
+    rgba(0,0,0,0.2) 60%,
+    transparent 100%
+  );
+}
+
+/* Dark Box Blobs */
+.dark-blob {
+  position: fixed;
+  background: rgba(20, 10, 5, 0.04);
+  border-radius: 12px;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--saffron));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes pageSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.98);
+  }
+}
+
+@keyframes pageSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ═══ REVEAL ANIMATIONS ═══ */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity:0; transform:translateY(-24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity:0; transform:translateX(24px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@keyframes fadeRight {
+  from { opacity:0; transform:translateX(-24px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@keyframes popIn {
+  0%   { opacity:0; transform:scale(0.85); }
+  70%  { transform:scale(1.04); }
+  100% { opacity:1; transform:scale(1); }
+}
+@keyframes slideInUp {
+  from { opacity:0; transform:translateY(40px) scale(0.97); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+
+/* ═══ UTILITY CLASSES ═══ */
+.anim-ready {
+  opacity: 0;
+}
+.anim-fadeUp    { animation: fadeUp    0.55s cubic-bezier(0.23,1,0.32,1) forwards; }
+.anim-fadeDown  { animation: fadeDown  0.55s cubic-bezier(0.23,1,0.32,1) forwards; }
+.anim-fadeLeft  { animation: fadeLeft  0.55s cubic-bezier(0.23,1,0.32,1) forwards; }
+.anim-fadeRight { animation: fadeRight 0.55s cubic-bezier(0.23,1,0.32,1) forwards; }
+.anim-popIn     { animation: popIn     0.5s  cubic-bezier(0.23,1,0.32,1) forwards; }
+.anim-slideUp   { animation: slideInUp 0.6s  cubic-bezier(0.23,1,0.32,1) forwards; }
+
+/* Stagger delays */
+.delay-1 { animation-delay: 0.05s; }
+.delay-2 { animation-delay: 0.10s; }
+.delay-3 { animation-delay: 0.15s; }
+.delay-4 { animation-delay: 0.20s; }
+.delay-5 { animation-delay: 0.25s; }
+.delay-6 { animation-delay: 0.30s; }
+
+/* ═══ SCROLL REVEAL ═══ */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease,
+              transform 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes thinkDot {
+  0%,60%,100% { transform:translateY(0); }
+  30% { transform:translateY(-6px); }
+}
+
+/* ═══ AUTH MODAL ANIMATIONS ═══ */
+@keyframes orbFloat1 {
+  0%,100% { transform:translateY(0) scale(1); }
+  50% { transform:translateY(-20px) scale(1.1); }
+}
+@keyframes orbFloat2 {
+  0%,100% { transform:translateY(0) scale(1); }
+  50% { transform:translateY(15px) scale(0.95); }
+}
+@keyframes logoPulse {
+  0%,100% { box-shadow:0 0 0 0 rgba(255,255,255,0.4); }
+  50% { box-shadow:0 0 0 12px rgba(255,255,255,0); }
+}
+@keyframes bannerShimmer {
+  0% { background-position:-200% 0; }
+  100% { background-position:200% 0; }
+}
+@keyframes textShimmer {
+  0%,100% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+}
+@keyframes spin {
+  to { transform:rotate(360deg); }
+}
+
+@keyframes stratBar {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes modalPop {
+  from { 
+    opacity:0; 
+    transform:translate(-50%,-50%) scale(0.85); 
+  }
+  to { 
+    opacity:1; 
+    transform:translate(-50%,-50%) scale(1); 
+  }
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes rippleOut {
+  from {
+    transform: scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes buttonPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.93); }
+  100% { transform: scale(1); }
+}
+
+@keyframes welcomePop {
+  from { 
+    transform: scale(0.5) rotate(-10deg); 
+    opacity: 0; 
+  }
+  to { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 1; 
+  }
+}
+@keyframes dotPulse {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+@keyframes float0 {
+  from { transform: translateY(0px) rotate(0deg); }
+  to { transform: translateY(-15px) rotate(10deg); }
+}
+@keyframes float1 {
+  from { transform: translateY(0px) rotate(0deg); }
+  to { transform: translateY(-20px) rotate(-8deg); }
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, 15px) scale(1.05); }
+  66% { transform: translate(15px, -10px) scale(0.97); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(18px, -20px) scale(1.04); }
+  70% { transform: translate(-12px, 10px) scale(0.98); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10px, 18px) scale(1.06); }
+}
+
+@keyframes soundBar {
+  from { transform: scaleY(0.4); opacity: 0.6; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+@keyframes micPulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(239,68,68,0.35); 
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(239,68,68,0); 
+  }
+}
+
+@keyframes zoomBadgePulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+@keyframes dotAppear {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wordIn {
+  from { 
+    opacity: 0; 
+    filter: blur(3px);
+    transform: translateY(4px);
+  }
+  to { 
+    opacity: 1; 
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes wordReveal {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+@keyframes blurReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseThinking {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
